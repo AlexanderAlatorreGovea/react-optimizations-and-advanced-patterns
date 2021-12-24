@@ -1,8 +1,10 @@
 import React from "react";
 import { buttonStyles, labelStyles } from "./styles";
+
 const initialState = {
   lapse: 0,
   started: null,
+  now: null,
 };
 
 function reducer(state, { now, type }) {
@@ -14,9 +16,21 @@ function reducer(state, { now, type }) {
     case "tick":
       return { ...state, now };
     case "stop":
-      return { ...state, started: null, lapse: lapse + (now - started) };
+      const lapsed = lapse + (now - started);
+
+      return {
+        ...state,
+        started: null,
+        now: null,
+        lapse: lapsed,
+      };
     case "clear":
-      return { ...state, started: null, lapse: 0 };
+      return {
+        ...state,
+        started: null,
+        now: null,
+        lapse: 0,
+      };
     default:
       throw new Error();
   }
