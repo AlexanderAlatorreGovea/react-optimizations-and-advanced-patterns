@@ -18,6 +18,6 @@ export const useShareableState = () => {
     count,
     setCount,
     handleChange,
-    increaseCount
+    increaseCount,
   };
 };

@@ -3,6 +3,7 @@ import Composition from "./composition/composition";
 import Optimized from "./optimized-react/Optimized";
 import Optimized2 from "./optimized-react/Optimized";
 import Shared from "./share-state-with-hooks/App";
+import { FetchData } from "./share-state-with-hooks/fetch-data";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Route path="/optimized" element={<Optimized />} />
       <Route path="/optimized2" element={<Optimized2 />} />
       <Route path="/shared-state" element={<Shared />} />
+      <Route path="/fetch" element={<FetchData />} />
     </Routes>
   );
 }
