@@ -4,7 +4,7 @@ import { useState } from "react";
 
 function Composition() {
   const OrderReportWithComposition = withComposition(OrderReport);
-  
+
   return (
     <div className="App">
       <OrderReport customer={customerA}>I am your child</OrderReport>
@@ -19,7 +19,7 @@ function OrderReport({ customer, children }) {
   const { name, address, total } = customer;
 
   return (
-    <div>
+    <div style={{ marginTop: "4rem" }}>
       <b>{name}</b>
       <hr />
       <span>{address}</span>
@@ -30,28 +30,33 @@ function OrderReport({ customer, children }) {
   );
 }
 
-const withComposition = (BaseComponent) => (props) => {
-  const [fastTracker, setFastTracker] = useState(props.isFastTracked);
+const withComposition =
+  (BaseComponent) =>
+  ({ isFastTracked, customer }) => {
+    const [fastTracker, setFastTracker] = useState(isFastTracked);
+    const [text, setText] = useState("");
 
-  const toggleFastTracker = () => {
-    setFastTracker(!fastTracker);
+    const toggleFastTracker = () => {
+      setFastTracker(!fastTracker);
+    };
+
+    const isFastrackerEnabled = fastTracker ? (
+      <div>Fast Tracked Enabled</div>
+    ) : (
+      <div>Not Fast Tracked</div>
+    );
+
+    const ChildrenOfBaseComponent = (
+      <BaseComponent customer={customer}>
+        <br />
+        <button onClick={toggleFastTracker}>Toggle Tracker</button>
+        {isFastrackerEnabled}
+        <input type="text" onChange={(e) => setText(e.target.value)} value={text} />
+        <h2>{text}</h2>
+      </BaseComponent>
+    );
+
+    return ChildrenOfBaseComponent;
   };
-
-  const isFastrackerEnabled = fastTracker ? (
-    <div>Fast Tracked Enabled</div>
-  ) : (
-    <div>Not Fast Tracked</div>
-  );
-
-  const ChildrenOfBaseComponent = (
-    <BaseComponent customer={props.customer}>
-      <br />
-      <button onClick={toggleFastTracker}>Toggle Tracker</button>
-      {isFastrackerEnabled}
-    </BaseComponent>
-  );
-
-  return ChildrenOfBaseComponent;
-};
 
 export default Composition;
