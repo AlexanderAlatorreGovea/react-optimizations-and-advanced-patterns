@@ -1,4 +1,4 @@
-import { customerA, customerB, customerC } from "./customerTypes";
+import { customerA, customerB } from "./customerTypes";
 import "../App.css";
 import { useState } from "react";
 
@@ -51,7 +51,11 @@ const withComposition =
         <br />
         <button onClick={toggleFastTracker}>Toggle Tracker</button>
         {isFastrackerEnabled}
-        <input type="text" onChange={(e) => setText(e.target.value)} value={text} />
+        <input
+          type="text"
+          onChange={(e) => setText(e.target.value)}
+          value={text}
+        />
         <h2>{text}</h2>
       </BaseComponent>
     );
