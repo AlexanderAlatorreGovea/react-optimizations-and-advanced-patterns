@@ -10,7 +10,10 @@ function Composition() {
       <OrderReport customer={customerA}>I am your child</OrderReport>
       <OrderReportWithComposition
         customer={customerB}
-      ></OrderReportWithComposition>
+        isFastTracked={false}
+      >
+        This is fast tracked
+      </OrderReportWithComposition>
     </div>
   );
 }
@@ -32,7 +35,7 @@ function OrderReport({ customer, children }) {
 
 const withComposition =
   (BaseComponent) =>
-  ({ isFastTracked, customer }) => {
+  ({ isFastTracked, customer, children }) => {
     const [fastTracker, setFastTracker] = useState(isFastTracked);
     const [text, setText] = useState("");
 

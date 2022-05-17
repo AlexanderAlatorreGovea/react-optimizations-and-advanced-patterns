@@ -50,21 +50,22 @@ export const UseEffectBug = () => {
     }
   }, [started]);
 
+  const startOrStopTimer = () => {
+    dispatch({
+      type: started ? "stop" : "start",
+      now: Date.now(),
+    });
+  };
+
+  const clearTimer = () => dispatch({ type: "clear" });
+
   return (
     <div>
       <label style={labelStyles}>{total}ms</label>
-      <button
-        style={buttonStyles}
-        onClick={() => {
-          dispatch({
-            type: started ? "stop" : "start",
-            now: Date.now(),
-          });
-        }}
-      >
+      <button style={buttonStyles} onClick={startOrStopTimer}>
         {started ? "Stop" : "Start"}
       </button>
-      <button style={buttonStyles} onClick={() => dispatch({ type: "clear" })}>
+      <button style={buttonStyles} onClick={clearTimer}>
         Clear
       </button>
     </div>
