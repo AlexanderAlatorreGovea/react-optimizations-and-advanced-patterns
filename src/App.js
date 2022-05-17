@@ -5,11 +5,12 @@ import Optimized2 from "./optimized-react/Optimized";
 import Shared from "./share-state-with-hooks/App";
 import { FetchData } from "./share-state-with-hooks/fetch-data";
 import { UseEffectBug } from "./useEffectBug/UseEffectBug";
+import { UseEffectNote } from "./useEffectBug/useEffectNote";
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Composition />} />
+      <Route path="/" element={<UseEffectNote />} />
       <Route path="/optimized" element={<Optimized />} />
       <Route path="/optimized2" element={<Optimized2 />} />
       <Route path="/shared-state" element={<Shared />} />

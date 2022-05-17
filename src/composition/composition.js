@@ -8,10 +8,7 @@ function Composition() {
   return (
     <div className="App">
       <OrderReport customer={customerA}>I am your child</OrderReport>
-      <OrderReportWithComposition
-        customer={customerB}
-        isFastTracked={false}
-      >
+      <OrderReportWithComposition customer={customerB} isFastTracked={false}>
         This is fast tracked
       </OrderReportWithComposition>
     </div>
