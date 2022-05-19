@@ -39,6 +39,8 @@ export const UseEffectNote = () => {
     onSuccess: console.log("success"),
   });
 
+  console.log(data)
+
   return (
     <div>
       {data && data.hits.map((hit) => <div key={hit.author}>{hit.author}</div>)}

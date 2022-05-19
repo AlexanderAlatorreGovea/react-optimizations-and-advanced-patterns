@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { UseRef } from "./UseRef/UseRef";
 import { Routes, Route } from "react-router-dom";
 import Composition from "./composition/composition";
 import Optimized from "./optimized-react/Optimized";
@@ -17,7 +17,7 @@ function App() {
       <Route path="/shared-state" element={<Shared />} />
       <Route path="/fetch" element={<FetchData />} />
       <Route path="/bug-with-useeffect" element={<UseEffectBug />} />
-      <Route path="/useref"  element={<useRef />} />
+      <Route path="/useref"  element={<UseRef />} />
     </Routes>
   );
 }
