@@ -5,6 +5,7 @@ import React, {
   useLayoutEffect,
   createRef,
 } from "react";
+import { useMemo } from "react";
 
 const useCallbackRef = (callback) => {
   const callbackRef = useRef(callback);
@@ -40,32 +41,47 @@ const useFetch = (options) => {
 
 export const UseRef = () => {
   const [url, setUrl] = useState("react");
+  const [color, setColor] = useState("");
   const { data } = useFetch({
     url: `https://hn.algolia.com/api/v1/search?query=${url}`,
     onSuccess: console.log("success"),
   });
 
-  const lineRefs = React.useRef([]);
-
-  const getRefs = async () => {
-    if (data && data.hits) {
-      const refs = await (lineRefs.current =
-        data && data.hits.map((_, i) => lineRefs.current[i] ?? createRef()));
-
-      return refs;
+  const textElements = [];
+  const getCurrentIdx = (idx) => {
+    const currentIdx = [];
+    if (idx) {
+      return currentIdx.concat(idx);
     }
   };
+  React.useEffect(() => {
+    textElements.forEach((el) => el);
 
-  useEffect(() => {
-    console.log(getRefs);
-  }, [data]);
+    if (textElements.length) {
+      textElements.map((el, idx) => {
+        if (idx === 0) {
+          setColor((prevColor) => (prevColor = "blue"));
+        }
+      });
+    }
+  }, [textElements]);
+
+  console.log(color);
 
   return (
     <div>
       {data &&
         data.hits.map((hit, idx) => (
-          <div ref={lineRefs.current[idx]} key={hit.author}>
-            {hit.author}
+          <div className="parentRef" key={hit.author}>
+            <div
+              style={{
+                background: `${color ? color : ""}`,
+              }}
+              ref={(el) => textElements.push(el)}
+              className="child"
+            >
+              {hit.author}
+            </div>
           </div>
         ))}
       <button onClick={() => setUrl("react")}>react</button>
