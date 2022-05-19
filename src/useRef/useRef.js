@@ -47,23 +47,25 @@ export const UseRef = () => {
     onSuccess: () => {},
   });
 
-  const textElements = useMemo(() => [], [])
+  const reassignColor = (textElements, obj) =>
+    textElements.forEach((_, idx) => {
+      if (idx % 2 === 0) {
+        const colorObject = { [idx]: "blue" };
+        Object.assign(obj, colorObject);
+
+        setColor(obj);
+      }
+    });
+
+  const textElements = useMemo(() => [], []);
   React.useEffect(() => {
     const obj = {};
-    if (textElements.length && data.hits) {
-      textElements.forEach((el, idx) => {
-        if (idx % 2 === 0) {
-          obj[idx] = "blue";
-        }
-      });
+    const hasRefs = textElements.length;
+
+    if (hasRefs) {
+      reassignColor(textElements, obj);
     }
-
-    const isObjectEmpty = !(Object.keys(obj).length === 0);
-    if (isObjectEmpty) {
-      setColor(obj);
-    }  
   }, [textElements, data]);
-
 
   return (
     <div>
