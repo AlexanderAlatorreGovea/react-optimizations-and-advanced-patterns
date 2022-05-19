@@ -41,26 +41,33 @@ const useFetch = (options) => {
 
 export const UseRef = () => {
   const [url, setUrl] = useState("react");
-  const [color, setColor] = useState([]);
+  const [color, setColor] = useState({});
   const { data } = useFetch({
     url: `https://hn.algolia.com/api/v1/search?query=${url}`,
-    onSuccess: console.log("success"),
+    onSuccess: () => {},
   });
 
   const textElements = [];
   React.useEffect(() => {
+    const obj = {};
     textElements.forEach((el) => el);
 
     if (textElements.length) {
-      textElements.map((el, idx) => {
+      textElements.forEach((el, idx) => {
         if (idx % 2 === 0) {
-          setColor([...idx]);
+          // const colors = { [idx]: "blue" };
+          // Object.assign(obj, colors);
+          obj[idx] = "blue";
         }
       });
     }
+
+    if(!(Object.keys(obj).length === 0)) {
+      setColor(obj)
+    }
   }, [textElements]);
 
-  console.log(color);
+
 
   return (
     <div>
@@ -69,7 +76,7 @@ export const UseRef = () => {
           <div className="parentRef" key={hit.author}>
             <div
               style={{
-                background: `${color.length ? color[idx] : ""}`,
+                background: `${color[idx]}`,
               }}
               ref={(el) => textElements.push(el)}
               className="child"
