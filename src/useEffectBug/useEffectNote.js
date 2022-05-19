@@ -13,12 +13,20 @@ const useFetch = (options) => {
   const savedOnSuccess = useCallbackRef(options.onSuccess);
 
   useEffect(() => {
+    let isCancelled = false;
+
     fetch(options.url)
       .then((res) => res.json())
       .then((json) => {
-        savedOnSuccess.current?.(json);
-        setData(json);
+        if (!isCancelled) {
+          savedOnSuccess.current?.(json);
+          setData(json);
+        }
       });
+
+    return () => {
+      isCancelled = true;
+    };
   }, [options.url]);
 
   return { data };
