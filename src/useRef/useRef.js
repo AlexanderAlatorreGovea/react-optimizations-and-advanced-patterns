@@ -47,26 +47,22 @@ export const UseRef = () => {
     onSuccess: () => {},
   });
 
-  const textElements = [];
+  const textElements = useMemo(() => [], [])
   React.useEffect(() => {
     const obj = {};
-    textElements.forEach((el) => el);
-
-    if (textElements.length) {
+    if (textElements.length && data.hits) {
       textElements.forEach((el, idx) => {
         if (idx % 2 === 0) {
-          // const colors = { [idx]: "blue" };
-          // Object.assign(obj, colors);
           obj[idx] = "blue";
         }
       });
     }
 
-    if(!(Object.keys(obj).length === 0)) {
-      setColor(obj)
-    }
-  }, [textElements]);
-
+    const isObjectEmpty = !(Object.keys(obj).length === 0);
+    if (isObjectEmpty) {
+      setColor(obj);
+    }  
+  }, [textElements, data]);
 
 
   return (
