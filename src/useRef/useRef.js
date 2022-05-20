@@ -1,9 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-  useRef,
-  useLayoutEffect,
-} from "react";
+import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
 import { useMemo } from "react";
 
 const useCallbackRef = (callback) => {
@@ -47,7 +42,7 @@ export const UseRef = () => {
   });
 
   const reassignColor = (textElements, obj) =>
-      textElements.forEach((_, idx) => {
+    textElements.forEach((_, idx) => {
       if (idx % 2 === 0) {
         const colorObject = { [idx]: "blue" };
         const newObject = Object.assign(obj, colorObject);
