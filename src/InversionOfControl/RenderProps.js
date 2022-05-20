@@ -2,20 +2,47 @@ import React, { useState } from "react";
 
 export const RenderProps = () => {
   return (
-    <div> 
-        Hello world
+    <div>
+      Hello world
       <GetPropsFromRenderPropsParent
         render={(prop) => <GetPropsFromRenderPropsChild prop={prop} />}
+        getProps={(prop) => getPropsThroughFunction(prop)}
       />
-    </div> 
+    </div>
   );
 };
 
-function GetPropsFromRenderPropsParent({ render }) {
+function GetPropsFromRenderPropsParent({ render, getProps }) {
   const [color, useColor] = useState("blue");
-  return <div>parent: {render(color)}</div>;
+  getProps({ color, useColor });
+
+  useMyFunc(color)
+
+  return (
+    <>
+      <div style={{ color: `${color}` }}>parent</div>
+      <div>{render(useColor)}</div>
+    </>
+  );
 }
 
 function GetPropsFromRenderPropsChild({ prop }) {
-  return <div style={{ background: `${prop}` }}>child: {prop}</div>;
+  const changeColor = () => {
+    prop("red");
+  };
+
+  return (
+    <div>
+      child:
+      <button onClick={changeColor}>change color</button>
+    </div>
+  );
 }
+
+function getPropsThroughFunction(props) {
+  return props;
+}
+
+const useMyFunc = (func) => {
+  console.log(func)
+};
