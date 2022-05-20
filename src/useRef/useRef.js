@@ -3,7 +3,6 @@ import React, {
   useEffect,
   useRef,
   useLayoutEffect,
-  createRef,
 } from "react";
 import { useMemo } from "react";
 
@@ -34,7 +33,7 @@ const useFetch = (options) => {
     return () => {
       isCancelled = true;
     };
-  }, [options.url]);
+  }, [options.url, savedOnSuccess]);
 
   return { data };
 };
@@ -48,12 +47,12 @@ export const UseRef = () => {
   });
 
   const reassignColor = (textElements, obj) =>
-    textElements.forEach((_, idx) => {
+      textElements.forEach((_, idx) => {
       if (idx % 2 === 0) {
         const colorObject = { [idx]: "blue" };
-        Object.assign(obj, colorObject);
+        const newObject = Object.assign(obj, colorObject);
 
-        setColor(obj);
+        setColor(newObject);
       }
     });
 
