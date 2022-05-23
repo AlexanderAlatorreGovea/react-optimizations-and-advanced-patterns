@@ -8,6 +8,7 @@ import { FetchData } from "./share-state-with-hooks/fetch-data";
 import { UseEffectBug } from "./useEffectBug/UseEffectBug";
 import { UseEffectNote } from "./useEffectBug/useEffectNote";
 import { RenderProps } from "./InversionOfControl/RenderProps";
+import { MVC } from "./MVC/MVC";
 
 function App() {
   return (
@@ -18,8 +19,9 @@ function App() {
       <Route path="/shared-state" element={<Shared />} />
       <Route path="/fetch" element={<FetchData />} />
       <Route path="/bug-with-useeffect" element={<UseEffectBug />} />
-      <Route path="/useref"  element={<UseRef />} />
-      <Route path="/render"  element={<RenderProps/>} />
+      <Route path="/useref" element={<UseRef />} />
+      <Route path="/render" element={<RenderProps />} />
+      <Route path="/mvc" element={<MVC />} />
     </Routes>
   );
 }
