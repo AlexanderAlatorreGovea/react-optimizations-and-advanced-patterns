@@ -60,7 +60,7 @@ const withComposition =
       </BaseComponent>
     );
 
-    return ChildrenOfBaseComponent;
+    return ChildrenOfBaseComponent; 
   };
 
 export default Composition;
