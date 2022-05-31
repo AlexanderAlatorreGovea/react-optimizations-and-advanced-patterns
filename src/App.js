@@ -6,7 +6,7 @@ import Optimized2 from "./optimized-react/Optimized";
 import Shared from "./share-state-with-hooks/App";
 import { FetchData } from "./share-state-with-hooks/fetch-data";
 import { UseEffectBug } from "./useEffectBug/UseEffectBug";
-import { UseEffectNote } from "./useEffectBug/useEffectNote";
+import UseEffectNote from "./useEffectBug/useEffectNote";
 import { RenderProps } from "./InversionOfControl/RenderProps";
 import { MVC } from "./MVC/MVC";
 

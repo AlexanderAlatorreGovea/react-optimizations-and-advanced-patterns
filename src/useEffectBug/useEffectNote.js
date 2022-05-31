@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
 
+import WithSpinner from "../composition/WithSpinner";
+
 const useCallbackRef = (callback) => {
   const callbackRef = useRef(callback);
   useLayoutEffect(() => {
@@ -32,20 +34,28 @@ const useFetch = (options) => {
   return { data };
 };
 
-export const UseEffectNote = () => {
+const UseEffectNote = () => {
   const [url, setUrl] = useState("react");
   const { data } = useFetch({
     url: `https://hn.algolia.com/api/v1/search?query=${url}`,
     onSuccess: console.log("success"),
   });
 
-  console.log(data)
+  const hits = data && data.hits;
 
-  return (
+  const Hits = () => (
     <div>
-      {data && data.hits.map((hit) => <div key={hit.author}>{hit.author}</div>)}
+      {hits.map((hit) => (
+        <div key={hit.author}>{hit.author}</div>
+      ))}
       <button onClick={() => setUrl("react")}>react</button>
       <button onClick={() => setUrl("redux")}>redux</button>
     </div>
   );
+
+  const ComposedHits = WithSpinner(Hits);
+
+  return <ComposedHits isLoading={!hits} />;
 };
+
+export default UseEffectNote;
