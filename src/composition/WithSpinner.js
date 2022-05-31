@@ -7,13 +7,12 @@ const WithSpinner = (WrappedComponent) => {
     return isLoading ? (
       <div className="spinner-overlay">
         <div className="spinner-container" />
-        loading
-      </div> 
+      </div>
     ) : (
       <WrappedComponent {...otherProps} />
     );
   };
-  
+
   return Spinner;
 };
 
