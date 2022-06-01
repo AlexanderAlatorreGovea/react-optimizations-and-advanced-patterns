@@ -1,41 +1,44 @@
-class Memento {
-  constructor(value) {
-    this.value = value;
+class Originator {
+  /**
+   * Create an originator.
+   */
+  constructor(content) {
+    this._content = content;
+  }
+  /**
+   * Get the originator content.
+   * @return {array} The originator content value.
+   */
+  get content() {
+    return this._content;
   }
 }
 
-const originator = {
-  store: function (val) {
-    return new Memento(val);
-  },
-  restore: function (memento) {
-    return memento.value;
-  },
-};
-
-class Keeper {
+class CareTaker {
   constructor() {
-    this.values = [];
+    this._content = [];
   }
 
-  addMemento(memento) {
-    this.values.push(memento);
+  setValue(value) {
+    this._content.push(value);
+    return this._content;
   }
 
-  getMemento(index) {
-    return this.values[index];
+  getValues() {
+    return this._content;
+  }
+
+  save() {
+    return new Originator(this._content);
+  }
+
+  restore(originator) {
+    this._content = originator.content;
   }
 }
 
-const keeper = new Keeper();
-keeper.addMemento('alex')
-keeper.addMemento('pedro')
-keeper.addMemento('mitchell')
+const careTaker = new CareTaker();
 
-originator.store(keeper.values)
-originator.restore('alex')
-originator.restore('pedro')
-
-console.log(keeper)
-
-export { originator, Keeper };
+careTaker.setValue("alex");
+careTaker.setValue("christian");
+careTaker.setValue("pedro");
