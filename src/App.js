@@ -9,6 +9,7 @@ import { UseEffectBug } from "./useEffectBug/UseEffectBug";
 import UseEffectNote from "./useEffectBug/useEffectNote";
 import { RenderProps } from "./InversionOfControl/RenderProps";
 import { MVC } from "./MVC/MVC";
+import Visitor from "./Visitor/Visitor";
 import { Memento } from "./React-Design-Patterns/Memento/Memento";
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
       <Route path="/useref" element={<UseRef />} />
       <Route path="/render" element={<RenderProps />} />
       <Route path="/mvc" element={<MVC />} />
+      <Route path="/visitor" element={<Visitor />} />
       <Route path="/memento" element={<Memento />} />
     </Routes>
   );

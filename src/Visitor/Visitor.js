@@ -1,5 +1,4 @@
 import React from "react";
-import "./styles.css";
 
 const simpleFormSchema = [
   {
@@ -60,7 +59,7 @@ const defaultComponents = {
     </label>
   ),
   Number: ({ label }) => (
-    <label>
+    <label> 
       {label}
       <input type="number" />
     </label>
@@ -84,7 +83,7 @@ function ViewGenerator({ schema, components }) {
       <ViewGenerator schema={field.children} components={mergedComponents} />
     ) : null;
 
-    return (
+    return ( 
       <React.Fragment key={index}>
         {mergedComponents[field.fieldType]({ ...field, children })}
       </React.Fragment>
