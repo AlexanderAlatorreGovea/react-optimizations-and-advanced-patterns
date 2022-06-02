@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 const simpleFormSchema = [
   {
@@ -59,7 +59,7 @@ const defaultComponents = {
     </label>
   ),
   Number: ({ label }) => (
-    <label> 
+    <label>
       {label}
       <input type="number" />
     </label>
@@ -83,7 +83,7 @@ function ViewGenerator({ schema, components }) {
       <ViewGenerator schema={field.children} components={mergedComponents} />
     ) : null;
 
-    return ( 
+    return (
       <React.Fragment key={index}>
         {mergedComponents[field.fieldType]({ ...field, children })}
       </React.Fragment>
@@ -92,6 +92,19 @@ function ViewGenerator({ schema, components }) {
 }
 
 export default function App() {
+  const [first, setFirst] = useState("");
+  const bool = false;
+
+  useEffect(() => {
+    if (bool) {
+      setFirst("first");
+      return;
+    }
+
+    console.log("second");
+  }, [first]);
+
+  console.log(first);
   return (
     <>
       <h2>Simple Form</h2>
