@@ -1,5 +1,6 @@
 export const storeItem = (itemToStore, key) => {
-  localStorage.setItem(key, itemToStore);
+  const arr = [];
+  localStorage.setItem(key, [...arr, itemToStore]);
 
   return localStorage.getItem(key);
 };
