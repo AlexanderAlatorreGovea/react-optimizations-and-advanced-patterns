@@ -1,23 +1,22 @@
-class LocalStorageMock {
-  constructor() {
-    this.store = {};
-  }
+import storeItem from "./localStorage";
+//import localStorageMock from "./localStorage.mock";
 
-  clear() {
-    this.store = {};
-  }
+const localStorageMock = {
+  getItem: jest.fn(),
+  setItem: jest.fn(),
+  clear: jest.fn(),
+};
 
-  getItem(key) {
-    return this.store[key] || null;
-  }
+describe("selectors", () => {
+  it("should return the result of local storage", () => {
+    const key = "alex";
+    const itemToStore = "govea";
 
-  setItem(key, value) {
-    this.store[key] = String(value);
-  }
+    storeItem(key, itemToStore);
 
-  removeItem(key) {
-    delete this.store[key];
-  }
-}
+    // const actual = localStorage.getItem(key);
 
-global.localStorage = new LocalStorageMock();
+    // expect(actual).toEqual(itemToStore);
+    expect(localStorage.getItem).toBeCalledWith(itemToStore)
+  });
+});
