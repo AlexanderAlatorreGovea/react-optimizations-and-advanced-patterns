@@ -1,10 +1,7 @@
 import { storeItem } from "./localStorage";
-//import { localStorageMock } from "./localStorage.mock";
-//global.localStorage = localStorageMock;
+import { localStorageMock } from "./localStorage.mock";
 
-import { LocalStorageMock } from "./classLocalStorage";
-
-global.localStorage = new LocalStorageMock();
+global.localStorage = localStorageMock;
 
 describe("selectors", () => {
   it("should return the result of", () => {

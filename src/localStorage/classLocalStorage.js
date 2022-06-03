@@ -1,4 +1,4 @@
-export class LocalStorageMock {
+class LocalStorageMock {
   constructor() {
     this.store = {};
   }
@@ -20,4 +20,4 @@ export class LocalStorageMock {
   }
 }
 
-global.localStorage = new LocalStorageMock();
+export const localStorage = new LocalStorageMock()
