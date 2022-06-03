@@ -1,14 +1,13 @@
-import storeItem from "./localStorage";
-//import localStorageMock from "./localStorage.mock";
+import { storeItem } from "./localStorage";
+//import { localStorageMock } from "./localStorage.mock";
+//global.localStorage = localStorageMock;
 
-const localStorageMock = {
-  getItem: jest.fn(),
-  setItem: jest.fn(),
-  clear: jest.fn(),
-};
+import { LocalStorageMock } from "./classLocalStorage";
+
+global.localStorage = new LocalStorageMock();
 
 describe("selectors", () => {
-  it("should return the result of local storage", () => {
+  it("should return the result of", () => {
     const key = "alex";
     const itemToStore = "govea";
 
@@ -17,6 +16,6 @@ describe("selectors", () => {
     // const actual = localStorage.getItem(key);
 
     // expect(actual).toEqual(itemToStore);
-    expect(localStorage.getItem).toBeCalledWith(itemToStore)
+    expect(localStorage.getItem).toBeCalledWith(itemToStore);
   });
 });
