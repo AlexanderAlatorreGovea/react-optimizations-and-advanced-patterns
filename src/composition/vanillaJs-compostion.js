@@ -17,9 +17,25 @@ const pipe =
   (x) =>
     fns.reduce((y, f) => f(y), x);
 
-const pipedOutput = pipe(
-  double,
-  square,
-)(2);
+const pipedOutput = pipe(double, square)(2);
 
 console.log(pipedOutput);
+
+//////// pipe message
+
+let message = "Hello world     "; // Try edit me
+
+const trim = (x) => x.trim();
+const limitToEightCharacters = (x) => x.slice(0, 8);
+const splitIntoTwoArrays = (x) => x.split(" ");
+const rejoinArrays = (x) => x.join(" ");
+
+message = pipe(
+  trim,
+  limitToEightCharacters,
+  splitIntoTwoArrays,
+  rejoinArrays
+)(message);
+
+// Log to console
+console.log(message);
