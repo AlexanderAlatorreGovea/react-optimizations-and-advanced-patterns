@@ -9,24 +9,36 @@ describe("selectors", () => {
   it("should return the result of", () => {
     const key = "alex";
     const itemToStore = "alex";
+
     storeItem(itemToStore, key);
 
-    expect(localStorage.getItem(key)).toEqual([itemToStore]);
+    const actual = localStorage.getItem(key);
+    const expected = [itemToStore];
+
+    expect(actual).toEqual(expected);
   });
 
   it("should return the result of an added item to the array", () => {
     const key = "alex";
     const itemToStore = "govea";
+
     storeItem(itemToStore, key);
 
-    expect(localStorage.getItem(key)).toEqual([itemToStore]);
+    const actual = localStorage.getItem(key);
+    const expected = [itemToStore];
+
+    expect(actual).toEqual(expected);
   });
 
   it("should return the result of an added item", () => {
     const key = "alex";
     const itemToStore = "govea";
+
     storeItem(itemToStore, key);
 
-    expect(localStorage.getItem(key)).toEqual([itemToStore]);
+    const actual = localStorage.getItem(key);
+    const expected = [itemToStore];
+
+    expect(actual).toEqual(expected);
   });
 });

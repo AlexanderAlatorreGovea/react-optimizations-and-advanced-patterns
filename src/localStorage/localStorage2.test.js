@@ -61,8 +61,6 @@ describe("localStorage", () => {
     const itemToStore = "govea";
     storeItem(itemToStore, key);
 
-    console.log(localStorage.store);
-
-    expect(localStorage.store).toEqual({ govea: ["alex"] });
+    expect(localStorage.getItem(key)).toEqual([itemToStore]);
   });
 });
