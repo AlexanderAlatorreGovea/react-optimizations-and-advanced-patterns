@@ -1,3 +1,5 @@
+let localStorageItems = {};
+
 export const localStorageMock = {
   getItem: jest.fn().mockImplementation((key) => localStorageItems[key]),
   setItem: jest.fn().mockImplementation((key, value) => {
@@ -10,5 +12,3 @@ export const localStorageMock = {
     localStorageItems[key] = undefined;
   }),
 };
-
-let localStorageItems = {};

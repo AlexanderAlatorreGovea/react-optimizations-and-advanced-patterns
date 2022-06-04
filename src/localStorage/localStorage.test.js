@@ -1,28 +1,32 @@
 import { storeItem } from "./localStorage";
 import { localStorageMock } from "./localStorage.mock";
 
+global.localStorage = localStorageMock;
+
 describe("selectors", () => {
-  beforeEach(() => {
-    jest.restoreAllMocks();
-    global.localStorage = localStorageMock;
-  });
+  beforeEach(() => localStorage.clear());
 
   it("should return the result of", () => {
     const key = "alex";
     const itemToStore = "alex";
-    storeItem(key, itemToStore);
+    storeItem(itemToStore, key);
 
-    expect(localStorage.getItem("alex")).toEqual(["alex"]);
+    expect(localStorage.getItem(key)).toEqual([itemToStore]);
   });
 
   it("should return the result of an added item to the array", () => {
     const key = "alex";
     const itemToStore = "govea";
+    storeItem(itemToStore, key);
 
-    storeItem(key, itemToStore);
+    expect(localStorage.getItem(key)).toEqual([itemToStore]);
+  });
 
-    console.log(localStorage.getItem("alex"));
+  it("should return the result of an added item", () => {
+    const key = "alex";
+    const itemToStore = "govea";
+    storeItem(itemToStore, key);
 
-    expect(localStorage.getItem("alex")).toEqual(["govea"]);
+    expect(localStorage.getItem(key)).toEqual([itemToStore]);
   });
 });
