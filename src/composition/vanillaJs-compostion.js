@@ -25,13 +25,13 @@ console.log(pipedOutput);
 
 let message = "Hello world     "; // Try edit me
 
-const trim = (x) => x.trim();
+const removeEmptySpace = (x) => x.trim();
 const limitToEightCharacters = (x) => x.slice(0, 8);
 const splitIntoTwoArrays = (x) => x.split(" ");
 const rejoinArrays = (x) => x.join(" ");
 
 message = pipe(
-  trim,
+  removeEmptySpace,
   limitToEightCharacters,
   splitIntoTwoArrays,
   rejoinArrays
