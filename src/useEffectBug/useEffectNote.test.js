@@ -7,16 +7,16 @@ import {
 import { render, screen, waitFor } from "@testing-library/react";
 import UseEffectNote from "./UseEffectNote";
 
-// beforeAll(() => jest.spyOn(window, "fetch"));
+// beforeAll(() => jest.spyOn(global, "fetch"));
 // beforeEach(() =>
-//   window.fetch.mockImplementation(() =>
+//   global.fetch.mockImplementation(() =>
 //     mockFetch("https://hn.algolia.com/api/v1/search?query=")
 //   )
 // );
 
 beforeEach(() => {
-  window.fetch = jest.fn();
-  window.fetch.mockResolvedValueOnce({
+  global.fetch = jest.fn();
+  global.fetch.mockResolvedValueOnce({
     json: async () =>
       Promise.resolve({
         hits: [{ author: "alex" }, { author: "jose" }],
@@ -31,7 +31,5 @@ describe("UseEffectNote", () => {
     await waitFor(() =>
       expect(screen.getByText(/alex/i)).toBeInTheDocument()
     );
-
-    //expect(screen.queryByTitle(/jose/i)).toBeInTheDocument();
   });
 });

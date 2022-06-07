@@ -1,15 +1,15 @@
 const mockWindowProperty = (property, value) => {
-  const { [property]: originalProperty } = window;
-  delete window[property];
+  const { [property]: originalProperty } = global;
+  delete global[property];
   beforeAll(() => {
-    Object.defineProperty(window, property, {
+    Object.defineProperty(global, property, {
       configurable: true,
       writable: true,
       value,
     });
   });
   afterAll(() => {
-    window[property] = originalProperty;
+    global[property] = originalProperty;
   });
 };
 
@@ -20,7 +20,7 @@ describe("localStorage test", () => {
     removeItem: jest.fn(),
   });
   it("localStorage mock works", () => {
-    window.localStorage.setItem("abc");
-    expect(window.localStorage.setItem).toHaveBeenCalledWith("abc");
+    global.localStorage.setItem("abc");
+    expect(global.localStorage.setItem).toHaveBeenCalledWith("abc");
   });
 });

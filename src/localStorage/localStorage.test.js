@@ -15,7 +15,7 @@ describe("selectors", () => {
     const actual = localStorage.getItem(key);
     const expected = [itemToStore];
 
-    expect(actual).toEqual(expected);
+    expect([actual]).toEqual(expected);
   });
 
   it("should return the result of an added item to the array", () => {
@@ -27,7 +27,7 @@ describe("selectors", () => {
     const actual = localStorage.getItem(key);
     const expected = [itemToStore];
 
-    expect(actual).toEqual(expected);
+    expect([actual]).toEqual(expected);
   });
 
   it("should return the result of an added item", () => {
@@ -39,6 +39,6 @@ describe("selectors", () => {
     const actual = localStorage.getItem(key);
     const expected = [itemToStore];
 
-    expect(actual).toEqual(expected);
+    expect([actual]).toEqual(expected);
   });
 });
