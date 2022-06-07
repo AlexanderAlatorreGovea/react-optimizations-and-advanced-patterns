@@ -5,7 +5,7 @@ import React, {
   useLayoutEffect,
 } from "react";
 
-import WithSpinner from "../composition/WithSpinner";
+//import WithSpinner from "../composition/WithSpinner";
 
 const useCallbackRef = (callback) => {
   const callbackRef = useRef(callback);
@@ -49,42 +49,43 @@ const UseEffectNote = () => {
 
   const hits = data && data.hits;
 
-  useEffect(() => {
-    if (didMount.current) {
-      console.log("I run only if toggle changes.");
-      return;
-    }
-    
-    didMount.current = true;
-  }, [url]);
-
   // useEffect(() => {
-  //   let isCancelled = false;
-
-  //   if (!isCancelled) {
-  //     console.log("hello world");
+  //   if (didMount.current) {
+  //     console.log("I run only if toggle changes.");
+  //     return;
   //   }
 
-  //   return () => {
-  //     isCancelled = true;
+  //   didMount.current = true;
+  // }, [url]);
 
-  //     console.log("destroy");
-  //   };
-  // }, [hits]);
+  //  useEffect(() => {
+  //    let isCancelled = false;
+
+  //    if (!isCancelled) {
+  //      console.log("hello world");
+  //    }
+
+  //    return () => {
+  //      isCancelled = true;
+
+  //      console.log("destroy");
+  //    };
+  //  }, [hits]);
 
   const Hits = () => (
     <div>
-      {hits.map((hit) => (
-        <div key={hit.author}>{hit.author}</div>
-      ))}
+      {hits &&
+        hits.map((hit) => (
+          <div key={hit.author}>{hit.author}</div>
+        ))}
       <button onClick={() => setUrl("react")}>react</button>
       <button onClick={() => setUrl("redux")}>redux</button>
     </div>
   );
 
-  const ComposedHits = WithSpinner(Hits);
+  //const ComposedHits = WithSpinner(Hits);
 
-  return <ComposedHits isLoading={!hits} />;
+  return <Hits isLoading={!hits} />;
 };
 
 export default UseEffectNote;
