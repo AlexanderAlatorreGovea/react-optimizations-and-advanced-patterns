@@ -1,24 +1,37 @@
+/* eslint-disable testing-library/no-debugging-utils */
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import {
+  toBeInTheDocument,
+  toHaveClass,
+} from "@testing-library/jest-dom";
+import { render, screen, waitFor } from "@testing-library/react";
 import UseEffectNote from "./UseEffectNote";
 
-global.fetch = jest.fn(() =>
-  Promise.resolve({
-    json: () =>
+// beforeAll(() => jest.spyOn(window, "fetch"));
+// beforeEach(() =>
+//   window.fetch.mockImplementation(() =>
+//     mockFetch("https://hn.algolia.com/api/v1/search?query=")
+//   )
+// );
+
+beforeEach(() => {
+  window.fetch = jest.fn();
+  window.fetch.mockResolvedValueOnce({
+    json: async () =>
       Promise.resolve({
-        hits: {
-          author: "alex",
-        },
+        hits: [{ author: "alex" }, { author: "jose" }],
       }),
-  })
-);
+  });
+});
 
 describe("UseEffectNote", () => {
-  it("should render a container render", () => {
+  it("should render a container render", async () => {
     render(<UseEffectNote />);
 
-    const name = screen.queryByTitle("alex");
-    console.log(name);
-    expect(name).toBeInTheDocument();
+    await waitFor(() =>
+      expect(screen.getByText(/alex/i)).toBeInTheDocument()
+    );
+
+    //expect(screen.queryByTitle(/jose/i)).toBeInTheDocument();
   });
 });

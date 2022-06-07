@@ -14,9 +14,8 @@ const useCallbackRef = (callback) => {
   }, [callback]);
   return callbackRef;
 };
-
-const useFetch = (options) => {
-  const [data, setData] = useState(null);
+export const useFetch = (options) => {
+  const [data, setData] = useState([]);
   const savedOnSuccess = useCallbackRef(options.onSuccess);
 
   useEffect(() => {
@@ -26,7 +25,6 @@ const useFetch = (options) => {
       .then((res) => res.json())
       .then((json) => {
         if (!isCancelled) {
-          savedOnSuccess.current?.(json);
           setData(json);
         }
       });
@@ -47,7 +45,7 @@ const UseEffectNote = () => {
   });
   const didMount = React.useRef(false);
 
-  const hits = data && data.hits;
+  const hits = data && data?.hits;
 
   // useEffect(() => {
   //   if (didMount.current) {
