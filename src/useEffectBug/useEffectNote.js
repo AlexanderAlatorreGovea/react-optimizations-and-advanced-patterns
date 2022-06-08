@@ -70,14 +70,42 @@ const UseEffectNote = () => {
   //    };
   //  }, [hits]);
 
+  const clickReduxBtn = () => {
+    return setUrl("redux");
+  };
+
+  const clickReactBtn = () => {
+    return setUrl("react");
+  };
+
+  const composeFunction = (...fns) => {
+    return fns.map((fn) => fn());
+  };
+
   const Hits = () => (
     <div>
       {hits &&
         hits.map((hit) => (
           <div key={hit.author}>{hit.author}</div>
         ))}
-      <button onClick={() => setUrl("react")}>react</button>
-      <button onClick={() => setUrl("redux")}>redux</button>
+      <button
+        onClick={() =>
+          composeFunction(clickReactBtn, () =>
+            console.log("react")
+          )
+        }
+      >
+        react
+      </button>
+      <button
+        onClick={() =>
+          composeFunction(clickReduxBtn, () =>
+            console.log("redux")
+          )
+        }
+      >
+        redux
+      </button>
     </div>
   );
 
